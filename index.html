@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweet Heritage — Traditional Desserts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf6f0;
+      --warm-white: #fdfaf6;
+      --ink: #1a1612;
+      --ink-soft: #3d3530;
+      --accent: #8b6347;
+      --accent-light: #c4a882;
+      --line: rgba(139, 99, 71, 0.18);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: rgba(250, 246, 240, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.4rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-soft); text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 60%, rgba(196,168,130,0.13) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.4rem;
+      opacity: 0; animation: fadeUp 0.9s 0.2s forwards;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-weight: 300; line-height: 1.05;
+      color: var(--ink); margin-bottom: 1.8rem;
+      opacity: 0; animation: fadeUp 0.9s 0.4s forwards;
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      max-width: 480px; font-size: 0.95rem; color: var(--ink-soft);
+      line-height: 1.9; margin-bottom: 3rem;
+      opacity: 0; animation: fadeUp 0.9s 0.6s forwards;
+    }
+    .hero-scroll {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent-light);
+      opacity: 0; animation: fadeUp 0.9s 0.9s forwards;
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, var(--accent-light), transparent);
+      animation: lineGrow 1.2s 1.4s both;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 0 4rem; margin: 1rem 0;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--line);
+    }
+    .divider span {
+      font-family: var(--font-display); font-size: 1.1rem;
+      color: var(--accent-light); font-style: italic;
+    }
+
+    /* ── STORY SECTION ── */
+    .story {
+      padding: 7rem 4rem;
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem;
+      align-items: start;
+    }
+    .story-label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+    }
+    .story-heading {
+      font-family: var(--font-display); font-size: 2.8rem; font-weight: 300;
+      line-height: 1.15; color: var(--ink);
+    }
+    .story-heading em { font-style: italic; }
+    .story-ornament {
+      font-family: var(--font-display); font-size: 5rem;
+      color: var(--line); line-height: 1;
+      margin-top: 2rem; user-select: none;
+    }
+    .story-body p { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 1.4rem; }
+    .story-body p:first-child::first-letter {
+      font-family: var(--font-display); font-size: 3.2rem;
+      font-weight: 300; float: left; line-height: 0.75;
+      margin: 0.1em 0.12em 0 0; color: var(--accent);
+    }
+
+    /* ── DESSERTS GRID ── */
+    .desserts { padding: 4rem 4rem 8rem; }
+    .desserts-header {
+      text-align: center; margin-bottom: 5rem;
+    }
+    .desserts-header .label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.8rem;
+    }
+    .desserts-header h2 {
+      font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300; color: var(--ink);
+    }
+    .desserts-header h2 em { font-style: italic; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+
+    .card {
+      background: var(--warm-white);
+      border: 1px solid var(--line);
+      position: relative; overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s;
+      cursor: default;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(26,22,18,0.09);
+    }
+    .card-img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover;
+      display: block; filter: saturate(0.88);
+      transition: filter 0.4s, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+    }
+    .card:hover .card-img { filter: saturate(1); transform: scale(1.03); }
+    .card-img-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #e8ddd2 0%, #d4c4b0 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+    }
+    .card-body { padding: 1.8rem 2rem 2rem; }
+    .card-origin {
+      font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .card-title {
+      font-family: var(--font-display); font-size: 1.65rem;
+      font-weight: 400; color: var(--ink); margin-bottom: 0.7rem; line-height: 1.1;
+    }
+    .card-desc {
+      font-size: 0.88rem; color: var(--ink-soft); line-height: 1.75;
+      margin-bottom: 1.4rem;
+    }
+    .card-link {
+      font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent); text-decoration: none;
+      border-bottom: 1px solid var(--accent-light);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .card-link:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* ── QUOTE ── */
+    .quote-section {
+      padding: 6rem 4rem;
+      text-align: center;
+      background: linear-gradient(to bottom, var(--cream), #f3ece3, var(--cream));
+    }
+    .quote-mark {
+      font-family: var(--font-display); font-size: 6rem;
+      color: var(--accent-light); line-height: 0.5;
+      margin-bottom: 1.5rem;
+    }
+    .quote-text {
+      font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 300; font-style: italic;
+      color: var(--ink); max-width: 700px; margin: 0 auto 1.5rem;
+      line-height: 1.45;
+    }
+    .quote-attr {
+      font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent-light);
+    }
+
+    /* ── CONTACT / FOOTER ── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 4rem 4rem 3rem;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      flex-wrap: wrap; gap: 2rem;
+    }
+    .footer-brand {
+      font-family: var(--font-display); font-size: 1.6rem;
+      font-weight: 300; color: var(--ink);
+    }
+    .footer-brand span { font-style: italic; color: var(--accent); }
+    .footer-note {
+      font-size: 0.78rem; color: var(--ink-soft); margin-top: 0.4rem;
+    }
+    .footer-links { display: flex; gap: 1.8rem; }
+    .footer-links a {
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-soft); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy {
+      width: 100%;
+      font-size: 0.7rem; color: var(--accent-light);
+      text-align: center; padding-top: 2.5rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes lineGrow {
+      from { transform: scaleY(0); opacity: 0; }
+      to   { transform: scaleY(1); opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.6rem; }
+      .nav-links { gap: 1.4rem; }
+      .story { grid-template-columns: 1fr; gap: 2rem; padding: 5rem 1.6rem; }
+      .story-ornament { display: none; }
+      .desserts { padding: 3rem 1.6rem 5rem; }
+      footer { padding: 3rem 1.6rem 2rem; }
+      .divider { padding: 0 1.6rem; }
+      .quote-section { padding: 4rem 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Sweet Heritage</a>
+    <ul class="nav-links">
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#desserts">The Sweets</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Handcrafted with memory</p>
+    <h1 class="hero-title">Recipes passed<br>down through <em>generations</em></h1>
+    <p class="hero-sub">
+      Every sweet carries a story — a grandmother's kitchen, a festival morning,
+      a tradition kept alive one recipe at a time.
+    </p>
+    <div class="hero-scroll">Discover</div>
+  </section>
+
+  <div class="divider"><span>✦</span></div>
+
+  <!-- STORY -->
+  <section id="story" class="story">
+    <div>
+      <p class="story-label">Our Story</p>
+      <h2 class="story-heading">Made with <em>love &amp; history</em></h2>
+      <div class="story-ornament">❧</div>
+    </div>
+    <div class="story-body reveal">
+      <p>
+        These desserts are more than recipes — they are heirlooms. Each one was
+        learned in a kitchen that smelled of cardamom and caramelized sugar, taught
+        by hands that had made them a hundred times before.
+      </p>
+      <p>
+        What started as a way to preserve family traditions became something
+        shared with neighbors, friends, and now — with you. The ingredients are
+        simple. The techniques are old. The flavors are unlike anything
+        a modern bakery can replicate.
+      </p>
+      <p>
+        Replace this story with your own. Where did your love of these sweets begin?
+        Who taught you? What occasion calls for them? That's the story this page is
+        here to tell.
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"><span>✦</span></div>
+
+  <!-- DESSERTS -->
+  <section id="desserts" class="desserts">
+    <div class="desserts-header reveal">
+      <p class="label">The Collection</p>
+      <h2>Traditional <em>Sweets</em></h2>
+    </div>
+
+    <div class="grid">
+
+      <!-- CARD 1 -->
+      <article class="card reveal">
+        <div class="card-img-placeholder">🍯</div>
+        <!-- Replace the placeholder above with:
+             <img src="your-photo.jpg" alt="Dessert name" class="card-img" /> -->
+        <div class="card-body">
+          <p class="card-origin">Origin · Replace with yours</p>
+          <h3 class="card-title">Dessert Name One</h3>
+          <p class="card-desc">
+            A short description of this sweet — what it tastes like, when it's
+            traditionally made, what makes it special to you.
+          </p>
+          <a href="#" class="card-link">Read the story →</a>
+        </div>
+      </article>
+
+      <!-- CARD 2 -->
+      <article class="card reveal">
+        <div class="card-img-placeholder">🥮</div>
+        <div class="card-body">
+          <p class="card-origin">Origin · Replace with yours</p>
+          <h3 class="card-title">Dessert Name Two</h3>
+          <p class="card-desc">
+            Describe the texture, the aroma, the occasion. Is it made only
+            during a certain holiday? A family milestone? Tell that story here.
+          </p>
+          <a href="#" class="card-link">Read the story →</a>
+        </div>
+      </article>
+
+      <!-- CARD 3 -->
+      <article class="card reveal">
+        <div class="card-img-placeholder">🍮</div>
+        <div class="card-body">
+          <p class="card-origin">Origin · Replace with yours</p>
+          <h3 class="card-title">Dessert Name Three</h3>
+          <p class="card-desc">
+            Every dessert has a memory attached to it. This is where you share
+            yours — the first time you tasted it, who made it, what it means.
+          </p>
+          <a href="#" class="card-link">Read the story →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="quote-section reveal">
+    <div class="quote-mark">&ldquo;</div>
+    <p class="quote-text">
+      Food is memory. Every bite carries the echo of someone who loved you enough
+      to make it from scratch.
+    </p>
+    <p class="quote-attr">— Replace with your own quote or a family saying</p>
+  </div>
+
+  <!-- FOOTER / CONTACT -->
+  <footer id="contact">
+    <div>
+      <div class="footer-brand">Sweet <span>Heritage</span></div>
+      <p class="footer-note">Replace with your tagline or a short sentence about your sweets.</p>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:you@yourdomain.com">Email</a>
+      <a href="#">Instagram</a>
+      <a href="#">Recipes</a>
+    </div>
+    <p class="footer-copy">© 2026 Sweet Heritage — All rights reserved</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
